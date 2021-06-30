@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-  return knex.schemas.createTable('posts', function(table){
+  return knex.schema.createTable('posts', function(table){
             table.increments()
             table.string('title', 200)
             table.text('body','longtext')
