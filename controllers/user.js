@@ -1,25 +1,28 @@
-const {findAll,findOne, create, update, delete:remove } = require('../models/users');
+// const {findAll,findOne, create, update, delete:remove } = require('../models/users');
+const User = require('../models/users');
+
+const user = new User();
 
 module.exports = {
     fetch: (req,res) => {
-        findAll().then( (users) => res.status(200).json(users) )
+        user.findAll().then( (users) => res.status(200).json(users) )
     },
     retrieve: (req, res) => {
-        findOne(req.params.id).then( (user) => {
+        user.findOne(req.params.id).then( (user) => {
             res.status(200).json(user)
         }).catch( (error) => {
             res.status(400).json(error)
         })  
     },
     add: (req, res) => {
-        create(req.body).then((user) => {
+        user.create(req.body).then((user) => {
             res.status(201).json(user)
         }).catch((error) => {
             res.status(400).json(error);
         })
     },
     modify: (req,res) => {
-        update(req.params.id,req.body).then( (user) => {
+        user.update(req.params.id,req.body).then( (user) => {
             res.status(200).json(user)
         }).catch((error) => {
             res.status(400).json(error);
@@ -27,7 +30,7 @@ module.exports = {
     },
 
     eliminate: (req, res) => {
-        remove(req.params.id).then(() => {
+        user.delete(req.params.id).then(() => {
             res.status(204).send()
         }).catch((error) => {
             res.status(400).json(error);

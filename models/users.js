@@ -1,8 +1,19 @@
 // Aqui tenemos que hacer funciones que hagan el crud
 const db = require('../data/db');
+const Model = require('./Model');
 
 
-module.exports = {
+class User extends Model{
+
+    constructor(){
+        super('users')
+    }
+
+}
+
+module.exports = User;
+
+/* module.exports = {
 
     findAll: () => {
         //va a traer todos los usuarios de la BD
@@ -29,4 +40,4 @@ module.exports = {
         return db('users').where({id}).del()
     }
 
-}
+} */
