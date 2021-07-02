@@ -1,5 +1,7 @@
 // Aqui tenemos que hacer funciones que hagan el crud
 const Model = require('./Model');
+const Populate = require('knex-populate');
+const db =  require('../data/db');
 
 class User extends Model{
 
@@ -7,6 +9,13 @@ class User extends Model{
         super('users')
     }
 
+    populatePosts(id){
+        return Populate(db,'users')
+                .findById(id)
+                .populate('posts','user_id', 'posts')
+                .limitTo(10)
+                .exec()
+    }
 }
 
 module.exports = User;

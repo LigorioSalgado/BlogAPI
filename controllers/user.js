@@ -39,6 +39,14 @@ module.exports = {
             res.status(400).json(error);
         })
 
+    },
+    populatedUser: (req, res) =>{
+        const user = new User();
+        user.populatePosts(req.params.id).then((result) => {
+            res.status(200).json(result)
+        }).catch((error) => {
+            res.status(400).json(error);
+        })
     }
 
 }

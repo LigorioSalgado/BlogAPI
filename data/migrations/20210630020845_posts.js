@@ -6,7 +6,7 @@ exports.up = function(knex) {
             table.text('body','longtext')
             table.integer('user_id').notNullable().references('id').inTable('users').onDelete('cascade')
             table.string('category', 100)
-            table.timestamps() 
+            table.timestamps().defaultTo(knex.fn.now())
   })
 };
 
