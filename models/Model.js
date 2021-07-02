@@ -21,7 +21,7 @@ class Model{
         return this.db.insert(data,this.fields)
     }
 
-    update(data,id){
+    update(id,data){
         return this.db.where({id}).update(data, this.fields)
     }
 
