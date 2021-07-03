@@ -15,6 +15,7 @@ module.exports = {
         })  
     },
     add: (req, res) => {
+        console.log('llegue a el controller')
         const user = new User();
         user.create(req.body).then((result) => {
             res.status(201).json(result)

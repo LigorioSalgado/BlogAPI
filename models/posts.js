@@ -15,6 +15,14 @@ class Post extends Model{
                 .populate('users','user_id', 'user')// 1. Tabla de referncia, 2. foreign_key 3. alias(como se va a llamar mi campo)
                 .exec()
     }
+
+    searchByCategory(category){
+        return this.db.where({category})
+    }
+
+    searchInBody(search){
+        return this.db.where('body','like',`%${search}%`)
+    }
 }
 
 module.exports =  Post;

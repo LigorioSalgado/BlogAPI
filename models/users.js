@@ -16,6 +16,8 @@ class User extends Model{
                 .limitTo(10)
                 .exec()
     }
+
+    
 }
 
 module.exports = User;

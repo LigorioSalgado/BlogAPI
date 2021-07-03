@@ -3,6 +3,10 @@ const Post = require('../models/posts');
 module.exports = {
     fetch: (req,res) => {
         const postObj = new Post();
+        if (req.query.category) return postObj.searchByCategory(req.query.category)
+                                            .then(results => res.status(200).json(results))
+        if (req.query.search) return postObj.searchInBody(req.query.search)
+                                            .then(results => res.status(200).json(results))
         postObj.findAll().then( (posts) => res.status(200).json(posts) )
     },
     retrieve: (req, res) => {
